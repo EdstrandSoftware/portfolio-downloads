@@ -1,0 +1,58 @@
+CSV Relay Lab — text alternative to the silent 156-second film
+
+The film is an illustrated explanation, with one typeset excerpt from verified
+saved-run results. Its diagrams and moving cards are not a screen recording of
+live transfer activity. All services shown are simulated local HTTP services.
+
+1. [00:00–00:12] Final outcome preview. Eight fictional CSV batches have arrived at the
+local receiver. The film then rewinds to explain how this outcome was reached.
+
+2. [00:12–00:26] Inputs and bytes. Eight files, parts-001 through parts-008, each contain
+three fictional parts rows, for 24 rows total. Selected examples show mixed
+line endings, a UTF-8 byte-order mark, Unicode and CSV quoting. Sent and
+received byte examples match. The relay does not clean or interpret values.
+
+3. [00:26–00:38] Setup. From api-transfer/toolproject/, the example command is
+`python3 scripts/run_demo.py --output runs/my-demo-run`. Python 3.10+ and no
+further package installation are required for the relay. One helper starts
+two temporary local servers, runs the example, saves results in the chosen
+fresh folder and stops the servers. The ZIP root WORKFLOW.md has setup steps.
+
+4. [00:38–00:50] Dry run. Eight batches are checked. Nothing is sent, and no receiver
+receipt or sender ledger is created.
+
+5. [00:50–01:06] Deliberate faults. On the first transfer phase, six batches deliver and
+two fail after the relevant bounded retry behavior. One 503 temporary error
+is retried but still fails; a 400 bad request stops without retry. The six
+completed deliveries remain recorded.
+
+6. [01:06–01:30] Lost reply for parts-005. This batch is one of the six initial successes.
+The local receiver stores its bytes, transfer key and receipt, but the first
+reply is lost. The sender retries under the same key. The receiver returns
+its original receipt: two POST requests, one stored receipt. This depends on
+the receiver's atomic key/bytes/receipt behavior.
+
+7. [01:30–01:40] Repair. The scripted helper automatically removes both faults it
+injected. For a real failure, a person would first investigate and fix the
+cause. This exercise does not repair production services.
+
+8. [01:40–01:54] Recovery. A failed-only run delivers the two failed batches and skips six
+completed ones. The sender ledger tracks progress; receiver receipts confirm
+stored transfers. A normal rerun skips all eight and sends zero new POSTs.
+`demo-summary.json` shows counts and `integrity-results.json` shows byte
+comparisons in the selected run folder.
+
+9. [01:54–02:10] New ninth batch. In a separate local scenario, a new file parts-009 arrives
+under a new batch ID. Failed-only mode skips it because it has not failed.
+Normal mode sends it, yielding nine total receipts while the first eight
+receipt IDs stay unchanged. The next normal rerun sends zero new POSTs.
+
+10. [02:10–02:22] Receiver contract. The mock receiver stores the transfer key, bytes and
+receipt together. A typeset saved-run excerpt accompanies the diagram. A
+sender ledger alone cannot prevent duplication after a reply is lost. This is
+a contract demonstrated by this local receiver, not a general production
+exactly-once guarantee.
+
+11. [02:22–02:36] Next steps. Extract csv-relay-motion-source.zip. Read WORKFLOW.md at its
+root and use the runnable example in api-transfer/toolproject/. The film ends
+on this package navigation cue.

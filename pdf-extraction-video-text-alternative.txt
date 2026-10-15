@@ -1,0 +1,40 @@
+Text alternative — Field Ledger PDF extraction demo (144 seconds, silent)
+
+This self-initiated, AI-assisted fictional demo shows a local Python command-line
+tool for service-intake teams. The owner has not yet personally practiced the
+workflow. It is not a client run, measured saving, or real service integration.
+
+00:00–00:10: Known fillable PDFs go in; reviewable Excel rows come out. The
+local tool preserves source text and flags records for human review.
+00:10–00:24: An actual fictional sample PDF, intake 03, illustrates stored
+text fields, including SRV-0003, José Müller, and serial 000000003. Known
+text-only AcroForms are supported; scans and flattened PDFs are not.
+00:24–00:36: A person defines exact field-name aliases in schema.json. For
+example, ServiceID and ticket_number map to service_id. The tool does not
+guess a mapping; there are 12 mapped columns.
+00:36–00:48: Follow the ZIP's root WORKFLOW.md for Python setup. Run from
+pdf-extraction/toolproject/ into a fresh output folder. Exit code 2 means the
+batch completed with review items; COMPLETE.json is the completion receipt.
+00:48–01:04: A typeset excerpt of an actual saved run shows 23 extracted,
+1 needing review, and 3 quarantined. Records has 27 data rows because the
+quarantined files remain visible there. Check the receipt, then the workbook.
+01:04–01:18: Paired highlights compare the actual intake 03 PDF with saved
+workbook values: service ID, contact name, and serial number. Stored text and
+leading zeros are retained.
+01:18–01:30: An illustrated intake 23 row keeps a required company blank and
+marks it needs_review. A person must check with the form owner; the tool
+does not supply an answer.
+01:30–01:42: Three fictional files are separated for inspection: a flat PDF,
+a corrupt file, and a form with conflicting aliases. Quarantine holds unchanged
+copies; originals remain in demo/inputs/.
+01:42–01:58: The practice request changes contact_name from optional to
+required in a schema copy. After a visible rerun, intake 04 and intake 16
+change from extracted to needs review. Counts change to 21 / 3 / 3. Missing
+names remain blank and original PDFs are unchanged.
+01:58–02:10: Open extracted-records.xlsx. Check RunSummary, Validation, then
+Records and RawFields against source PDFs. A person confirms the mapping and
+missing details. Editing Excel does not update PDFs or the audit; check source
+values even on extracted rows.
+02:10–02:24: Extract field-ledger-motion-source.zip. Start with the root
+WORKFLOW.md. The runnable fictional example is in pdf-extraction/toolproject/;
+use a fresh output folder when running it.

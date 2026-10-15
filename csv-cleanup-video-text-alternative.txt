@@ -1,0 +1,33 @@
+Text alternative — CSV cleanup demo (94 seconds)
+
+Self-initiated AI-assisted demonstration. All customer information is fictional.
+Music and brief sound effects carry no additional instructions.
+
+00:00–00:08: A local Python command-line utility combines customer exports,
+removes exact duplicates, and flags missing or conflicting details for office
+administrators. It does not connect to a CRM.
+00:08–00:15: batch_a.csv has 10 records and batch_b.xlsx has 8. Matching
+column headers are required; together they contain 18 records.
+00:15–00:24: A view of an actual saved run shows the cleanup command. Start
+from utility-demo and follow WORKFLOW.md; use a fresh output folder.
+00:24–00:30: Outer spaces are removed while the space inside Ava Reed stays.
+Three cells are trimmed.
+00:30–00:39: Exact whole-row duplicates are removed only when every field
+matches and customer_id is present. Three copies are removed; 15 rows remain.
+00:39–00:47: Actual saved review evidence shows gaps and conflicting values.
+Five cells remain blank and one conflicting customer-ID group is retained.
+00:47–00:56: cleaned.csv keeps all 15 rows. review.csv copies the 6 flagged
+rows already within those 15. Also saved: duplicates.csv, summary.txt,
+summary.json.
+00:56–01:05: An illustration shows a person editing a copied CSV. Fictional
+customer 00103, Mila Shah, receives mila.shah@example.test, a supplied sample
+value. Save as batch_a_corrected.csv. Email addresses are not validated.
+01:05–01:12: Actual saved rerun evidence shows review rows falling from 6 to 5
+and missing cells from 5 to 4. The one conflict group is still retained.
+01:12–01:22: Confirm remaining details with the data owner, correct copied
+inputs, and rerun. Check destination requirements before a separate import.
+No CRM connection or import has been performed.
+01:22–01:34: Extract redline-cleanup-editable-source.zip. Start with the root
+WORKFLOW.md; utility-demo contains the tool and fictional inputs. Use Python
+3.10+ and a fresh output folder. The public companion package contains the
+runnable utility source; internal motion-production records are excluded.
